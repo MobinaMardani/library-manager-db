@@ -1,6 +1,7 @@
 {% extends "library/base.html" %}
 {% block content %}
 <h1>Books</h1>
+<p><a href="{% url 'book_create' %}">Add book</a></p>
 
 <form method="get">
     <input name="q" value="{{ query }}" placeholder="Search books">
@@ -21,11 +22,20 @@
     </form>
     {% endfor %}
     {% else %}
-    <form method="post" action="{% url 'return_book' book.id %}">
+    <form method="post" action="{% url 'return_book' book.id %}" style="display:inline">
         {% csrf_token %}
         <button type="submit">Return</button>
     </form>
     {% endif %}
+
+    <a href="{% url 'book_edit' book.id %}">Edit</a>
+    <form method="post" action="{% url 'book_delete' book.id %}" style="display:inline"
+        onsubmit="return confirm('Delete this book?');">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
 </article>
+{% empty %}
+<p>No books found.</p>
 {% endfor %}
 {% endblock %}

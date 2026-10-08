@@ -1,0 +1,12 @@
+{% extends "library/base.html" %}
+{% block content %}
+<h1>{% if book %}Edit book{% else %}Add book{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    <p><label>Title <input name="title" value="{{ book.title|default:'' }}" required></label></p>
+    <p><label>Author <input name="author" value="{{ book.author|default:'' }}" required></label></p>
+    <p><label>Year <input name="year" type="number" value="{{ book.year|default:'' }}" required></label></p>
+    <button type="submit">Save</button>
+    <a href="{% url 'book_list' %}">Cancel</a>
+</form>
+{% endblock %}

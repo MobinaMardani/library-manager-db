@@ -6,6 +6,7 @@
     <li>Available books: {{ available_books }}</li>
     <li>Borrowed books: {{ borrowed_books }}</li>
     <li>Total members: {{ total_members }}</li>
+    <li>Active borrowings: {{ active_borrowings }}</li>
     <li>Most popular book:
         {% if most_popular %}{{ most_popular.title }} ({{ most_popular.borrow_count }} times){% else %}-{% endif %}
     </li>

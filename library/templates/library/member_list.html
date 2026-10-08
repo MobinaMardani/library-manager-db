@@ -1,11 +1,14 @@
 {% extends "library/base.html" %}
 {% block content %}
 <h1>Members</h1>
+<p><a href="{% url 'member_create' %}">Add member</a></p>
 {% for member in members %}
 <article>
     <h2>{{ member.name }}</h2>
     <p>{{ member.email }}</p>
     <p><a href="{% url 'member_history' member.id %}">Borrowing history</a></p>
 </article>
+{% empty %}
+<p>No members yet.</p>
 {% endfor %}
 {% endblock %}
